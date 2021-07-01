@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Players</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Pos</th>
+      <th>Att g</th>
+      <th>Att</th>
+      <th>Yds</th>
+      <th>Avg</th>
+      <th>Yds g</th>
+      <th>Td</th>
+      <th>Lng</th>
+      <th>Lng t</th>
+      <th>Rfd</th>
+      <th>Rfdp</th>
+      <th>Rush20</th>
+      <th>Rush40</th>
+      <th>Fum</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.team %></td>
+        <td><%= player.pos %></td>
+        <td><%= player.att_g %></td>
+        <td><%= player.att %></td>
+        <td><%= player.yds %></td>
+        <td><%= player.avg %></td>
+        <td><%= player.yds_g %></td>
+        <td><%= player.td %></td>
+        <td><%= player.lng %></td>
+        <td><%= player.lng_t %></td>
+        <td><%= player.rfd %></td>
+        <td><%= player.rfdp %></td>
+        <td><%= player.rush20 %></td>
+        <td><%= player.rush40 %></td>
+        <td><%= player.fum %></td>
+        <td><%= link_to 'Show', player %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player', new_player_path %>

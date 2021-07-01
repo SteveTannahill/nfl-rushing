@@ -1,0 +1,97 @@
+<%= form_with(model: player, local: true) do |form| %>
+  <% if player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+        <% player.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :team %>
+    <%= form.text_field :team %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pos %>
+    <%= form.text_field :pos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :att_g %>
+    <%= form.text_field :att_g %>
+  </div>
+
+  <div class="field">
+    <%= form.label :att %>
+    <%= form.number_field :att %>
+  </div>
+
+  <div class="field">
+    <%= form.label :yds %>
+    <%= form.number_field :yds %>
+  </div>
+
+  <div class="field">
+    <%= form.label :avg %>
+    <%= form.text_field :avg %>
+  </div>
+
+  <div class="field">
+    <%= form.label :yds_g %>
+    <%= form.text_field :yds_g %>
+  </div>
+
+  <div class="field">
+    <%= form.label :td %>
+    <%= form.number_field :td %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lng %>
+    <%= form.number_field :lng %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lng_t %>
+    <%= form.text_field :lng_t %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rfd %>
+    <%= form.text_field :rfd %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rfdp %>
+    <%= form.text_field :rfdp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rush20 %>
+    <%= form.number_field :rush20 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rush40 %>
+    <%= form.number_field :rush40 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fum %>
+    <%= form.number_field :fum %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
