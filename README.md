@@ -57,7 +57,7 @@ If you have any questions regarding requirements, do not hesitate to email your 
 
 ### Installation and running this solution
 
-## Stack with Versions
+#### Stack with Versions
 
 This app is built with Ruby on Rails with a Postgresql Database.
 
@@ -66,7 +66,7 @@ Rails Version = Rails 6.0.4
 Ruby Version = ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux]
 
 
-## Installation
+#### Installation
 
 Install ruby on rails using ther versions above. 
 This guide will help https://guides.rubyonrails.org/getting_started.html
@@ -77,12 +77,12 @@ I used paiza.cloud to set up a cloud based environment.
 
 Download this repo.
 
-##Running and Testing the App
+#### Running and Testing the App
 
 1. Config and seed DB
-  $ rake db:create
-  $ rake db:migrate
-  $ rake db:seed 
+  `$ rake db:create`
+  `$ rake db:migrate`
+  `$ rake db:seed` 
 
   The seed rake will ingest the running.json file into the database.  
   You can add a "seed_count" env variable to choose the number of records you 
@@ -90,24 +90,24 @@ Download this repo.
   
   Example:
   
-  $ rake db:seed seed_count=1000 
+  `$ rake db:seed seed_count=1000` 
   
   This will seed the db with at least 1000 records by ingesting the rushing.json file
   repeatedly until the count of records is greater the seed_count.
   
 2. Starting the app server 
-  $ rails s
+  `$ rails s`
 
   Once started you can navigate to http://localhost:3000/ to see the app.
   
 3. App Testing 
-  $ rails test
+  `$ rails test`
 
   To review the tests I wrote for this challenge you can review these files:
   - nfl-rushing/test/helpers/players_helper_test.rb
   - nfl-rushing/test/controllers/players_controller_test.rb
   
-##Challenge Requirments 
+#### Challenge Requirments 
 
 1.1 Seed the db with a single set of the rushing.json data.  Go to http://localhost:3000/. 
     The rushing.json data should be visible in a table.
@@ -122,7 +122,7 @@ Download this repo.
     
 2 Use
 
-  $ rake db:seed seed_count=10000
+  `$ rake db:seed seed_count=10000`
   
   to load the db with 10k and then run any of the examples above.
   
