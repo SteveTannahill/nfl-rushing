@@ -1,5 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<%= form_with(url: '/players', method: 'get', local: true) do %>
+  <%= label_tag "Select Player: " %>
+  <%= select_tag :player_name, options_for_select(@players_names, params[:player_name]) %>
+  <%= submit_tag("Select") %>
+<% end %>
+
+<%= form_with(url: '/players', method: 'get', local: true) do %>
+  <%= label_tag "Sort by: " %>
+  <%= select_tag :sort, options_for_select([["Total Rushing Yards", "yds"], ["Longest Rush", "lng"], ["Total Rushing Touchdowns", "td"]], params[:sort]) %>
+  <%= label_tag "Order: " %>
+  <%= select_tag :order, options_for_select([["Descending", "DESC"], ["Ascending", "ASC"]], params[:order]) %>
+  <%= submit_tag("Update") %>
+<% end %>
+
+<%= link_to "Download as CSV", players_path(:format => "csv", :player_name => params[:player_name], :commit => params[:commit], :order => params[:order], :sort => params[:sort]) %>
+
 <h1>Players</h1>
 
 <table>
@@ -15,7 +31,6 @@
       <th>Yds g</th>
       <th>Td</th>
       <th>Lng</th>
-      <th>Lng t</th>
       <th>Rfd</th>
       <th>Rfdp</th>
       <th>Rush20</th>
@@ -37,8 +52,7 @@
         <td><%= player.avg %></td>
         <td><%= player.yds_g %></td>
         <td><%= player.td %></td>
-        <td><%= player.lng %></td>
-        <td><%= player.lng_t %></td>
+        <td><%= player.lng.to_s + player.lng_t %></td>
         <td><%= player.rfd %></td>
         <td><%= player.rfdp %></td>
         <td><%= player.rush20 %></td>

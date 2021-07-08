@@ -3,11 +3,38 @@ class PlayersController < ApplicationController
 
   # GET /players or /players.json
   def index
+      
     @players = Player.all
+    @players_names = @players.map {|p| p.name}
+    @players_names = ["All"] + @players_names.uniq.sort
+    
+    case params[:commit]
+    when "Select"
+        if params[:player_name] == "All"
+            @players
+        else
+            @players = @players.where(name: params[:player_name])
+        end
+    when "Update"
+        if sort_is_valid? params[:sort] and order_is_valid? params[:order]
+          @players = @players.order(params[:sort] + " " + params[:order])
+        else
+          @players
+        end
+    else
+        @players
+    end
+    
+      respond_to do |format|
+        format.html
+        format.csv { send_data @players.to_csv(@players) }
+      end
+    
   end
 
   # GET /players/1 or /players/1.json
   def show
+      @params = params
   end
 
   # GET /players/new
@@ -65,5 +92,13 @@ class PlayersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def player_params
       params.require(:player).permit(:name, :team, :pos, :att_g, :att, :yds, :avg, :yds_g, :td, :lng, :lng_t, :rfd, :rfdp, :rush20, :rush40, :fum)
+    end
+    
+    def sort_is_valid? sort
+        Player.column_names.include? sort
+    end
+    
+    def order_is_valid? order
+        ["ASC" "DESC"].include? order
     end
 end

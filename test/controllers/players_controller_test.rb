@@ -9,6 +9,41 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
     get players_url
     assert_response :success
   end
+    
+  test "index w/valid select params" do
+    get players_url, params: {commit: "Select", name: "All"}
+    assert_response :success
+  end
+  
+  test "index w/invalid select params" do
+    get players_url, params: {commit: "Select", name: "jiberish"}
+    assert_response :success
+    
+    get players_url, params: {commit: "jiberish", name: "All"}
+    assert_response :success
+  end
+    
+  test "index w/valid sort params" do 
+    get players_url, params: {commit: "Update", sort: "yds", order: "ASC"}
+    assert_response :success
+  end
+    
+  test "index w/invalid values for sort and order" do
+    get players_url, params: {commit: "Update", sort: "jiberish", order: "jiberish"}
+    assert_response :success
+  end
+    
+  test "index csv w/ with and without params" do
+    get players_url, as: :csv
+    assert_response :success
+    
+    get players_url, params: {commit: "Update", sort: "yds", order: "ASC"}, as: :csv
+    assert_response :success
+    
+    get players_url, params: {commit: "Select", name: "All"}, as: :csv
+    assert_response :success
+  end
+    
 
   test "should get new" do
     get new_player_url
@@ -45,4 +80,6 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to players_url
   end
+  
+  
 end
